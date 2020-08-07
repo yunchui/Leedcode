@@ -65,14 +65,14 @@ class Solution:
             treeToList(root.right)
         treeToList(root)
         i,j =  0,1
-        min = float('inf')
+        minDifferent = float('inf')
         while j < len(nums):
             #print(nums[j],nums[i])
-            if nums[j]-nums[i] < min:
-                min = nums[j]-nums[i]
+            if nums[j]-nums[i] < minDifferent:
+                minDifferent = nums[j]-nums[i]
             i += 1
             j += 1
-        return min
+        return minDifferent
 
 
 # @lc code=end
