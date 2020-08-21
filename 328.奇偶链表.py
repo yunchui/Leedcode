@@ -43,6 +43,7 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+'''
 class Solution:
     def oddEvenList(self, head: ListNode) -> ListNode:
         if head == None or head.next == None:
@@ -61,8 +62,12 @@ class Solution:
         p.next = headEven
         #print(head)
         return head
-
-
+'''
+class Solution:
+    def oddEvenList(self, head: ListNode) -> ListNode:
+        if head == None or head.next == None:
+            return head
+        
             
             
         

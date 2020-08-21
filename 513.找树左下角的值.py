@@ -65,7 +65,9 @@ class Solution:
     def findBottomLeftValue(self, root: TreeNode) -> int:
         queue = [root]
         while(queue):
+            print(root.val)
             root = queue.pop(0)
+            print(root.val)
             if root.right: queue.append(root.right)
             if root.left: queue.append(root.left)
         return root.val

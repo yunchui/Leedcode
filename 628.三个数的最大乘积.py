@@ -42,13 +42,7 @@
 class Solution:
     def maximumProduct(self, nums: List[int]) -> int:
         nums.sort(reverse=True)
-        '''
-        if nums[0]*nums[1]*nums[2] <= 0:
-            if nums[0] >= 0:
-                return 0
-            else:
-                return nums[0] * nums[len(nums)-1]*nums[len(nums)-2]
-            '''
+
 
         return max(nums[0]*nums[1]*nums[2],nums[0] * nums[len(nums)-1]*nums[len(nums)-2])
         

@@ -37,11 +37,11 @@
 #
 
 # @lc code=start
+
 class Node:
     def __init__(self, val=None, next=[], isEnd=False):
         self.val = val
         self.next = {i.val: i for i in next}
-        print(self.next)
         self.isEnd = isEnd
 
 

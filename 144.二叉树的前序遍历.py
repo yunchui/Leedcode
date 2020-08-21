@@ -42,13 +42,13 @@
 class Solution:
     def preorderTraversal(self, root: TreeNode) -> List[int]:
         ret = []
-        queue = [root]
-        while queue:
-            node = queue.pop()
+        stack = [root]
+        while stack:
+            node = stack.pop()
             if node:
                 ret.append(node.val)
-                queue.append(node.right)
-                queue.append(node.left)
+                stack.append(node.right)
+                stack.append(node.left)
         return ret
 # @lc code=end
 

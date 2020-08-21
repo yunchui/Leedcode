@@ -33,7 +33,7 @@
 #         self.next = next
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
-        
+        #递归
         if not l1 or not l2:
             return l1 or l2
         if l1.val <= l2.val:

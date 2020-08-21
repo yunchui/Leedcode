@@ -30,12 +30,11 @@ class Solution:
     def countPrimes(self, n: int) -> int:
         if n < 2:
             return 0
-        isPrimes = [i for i in  range(n)]
+        isPrimes = [1]*(n)
         isPrimes[0] = isPrimes[1] = 0
         for i in range(2,int(n**0.5)+1):
             if isPrimes[i]:
-                print(isPrimes[i*i:n:i])
-                #isPrimes[i*i:n:i] = [0] * ((n - 1 - i * i) // i + 1)
+                isPrimes[i*i:n:i] = [0] * ((n - 1 - i * i) // i + 1) #切片[第i*i开始，到n，间隔i]
         return sum(isPrimes)
 
 

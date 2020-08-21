@@ -48,7 +48,43 @@
 #         self.val = x
 #         self.left = None
 class Solution:
+    def __init__(self):
+        self.pre = None
+        self.ret = []
+        self.ret_count, self.max_count, self.cur_count = 0, 0, 0
+
     def findMode(self, root: TreeNode) -> List[int]:
+        
+        self.inOrder(root)
+       
+        self.pre = None
+        self.ret = [0] * self.ret_count
+        self.ret_count, self.cur_count = 0, 0
+        self.inOrder(root)
+        
+        return self.ret
+
+    def inOrder(self, root: TreeNode) -> None:
+        if not root:
+            return
+        self.inOrder(root.left)
+        if self.pre and self.pre.val == root.val:
+            self.cur_count += 1
+        else:
+            self.cur_count = 1
+        if self.cur_count > self.max_count:
+            self.max_count = self.cur_count
+            self.ret_count = 1
+        elif self.cur_count == self.max_count:
+            if len(self.ret):
+                self.ret[self.ret_count] = root.val
+            self.ret_count += 1
+        self.pre = root
+        self.inOrder(root.right)
+
+
+
+        '''
         if not root:
             return []
         ans = self.order(root)
@@ -68,6 +104,8 @@ class Solution:
                 
                 count = 1
                 i += 1
+         
+         #最后一个
         if count>target[0]:
             target = [count,ans[i]]
         elif count==target[0]:
@@ -79,7 +117,7 @@ class Solution:
         if not root:
             return []
         return self.order(root.left)+[root.val]+self.order(root.right)
-
+        '''
             
         
 # @lc code=end

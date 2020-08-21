@@ -84,7 +84,7 @@ class Solution:
             res.append(p)
             size = l + (1 if a > 0 else 0)
             if p:
-                for _ in range( size - 1):
+                for _ in range( size - 1): #前面已经放入一个p
                     p = p.next
                 a -= 1
                 tmp = p.next
