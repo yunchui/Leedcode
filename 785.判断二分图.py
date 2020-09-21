@@ -62,6 +62,7 @@
 
 # @lc code=start
 class Solution:
+    '''
     def dfs(self,grid,colors,i,color,n):
         colors[i] = color
         for j in range(n):
@@ -71,16 +72,32 @@ class Solution:
                 if colors[j] == 0 and not self.dfs(grid,colors,j,-1*color,n):
                     return False
         return True
+    '''
+    def bfs(self,grid,colors,i,color,n):
+        q = collections.deque([i])
+        colors[i] = color
+        while q:
+            node = q.popleft()
+            for j in range(n):
+                if grid[node][j] == 1:
+                    if colors[j] == 0:
+                        q.append(j)
+                        colors[j] = -1 * colors[node]
+                    if colors[j] == colors[node]:
+                        return False
+        return True
+
+
     def isBipartite(self, graph: List[List[int]]) -> bool:
         n = len(graph)
-        print(n)
         grid = [[0] * n for _ in range(n)]
-        colors = [0] * n
-        for  i in range(n):
+        colors = [0] * n #全都没标记
+        for  i in range(n): #标记所有关联边
             for j  in graph[i]:
                 grid[i][j] = 1
         for i in range(n):
-            if colors[i] == 0 and not self.dfs(grid,colors,i,1,n):
+            #if colors[i] == 0 and not self.dfs(grid,colors,i,1,n):
+            if colors[i] == 0 and not self.bfs(grid,colors,i,1,n):  
                 return False
         return True
 

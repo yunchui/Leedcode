@@ -62,6 +62,7 @@
 
 # @lc code=start
 class Solution:
+    '''
     def dfs(self,grid,colors,i,color,n):#染色与i 有关联的，并判断
         colors[i] = color
         for j in range(n):
@@ -71,6 +72,9 @@ class Solution:
                 if colors[j] == 0 and not self.dfs(grid,colors,j,-1 * color,n):#当前未染色，递归下去，并且染上另一种颜色-1
                     return False
         return True
+    
+
+
     def possibleBipartition(self, N: int, dislikes: List[List[int]]) -> bool:
         #n = len(dislikes)
         grid = [[0]*N for _ in range(N)]
@@ -79,9 +83,37 @@ class Solution:
             grid[a-1][b-1] = 1
             grid[b-1][a-1] = 1
         for i in range(N):
-            if colors[i] == 0 and not self.dfs(grid,colors,i,1,N):
+            #if colors[i] == 0 and not self.dfs(grid,colors,i,1,N):
                 return False
         return True
-
+    '''
+class Solution:
+    def possibleBipartition(self, N: int, dislikes: List[List[int]]) -> bool:
+        #n = len(dislikes)
+        grid = [[0]*N for _ in range(N)]
+        colors = [0] * N
+        q = collections.deque()
+        color = 1
+        for a,b in dislikes:
+            grid[a-1][b-1] = 1
+            grid[b-1][a-1] = 1
+        for i in range(N):
+            q.append(i)
+            if colors[i] == 0:
+                colors[i] = color
+            while q:
+                node = q.popleft()
+                for j in range(N):
+                    if grid[node][j] == 1:
+                        
+                        if colors[j] == colors[node]:
+                            return False
+                        if colors[j] == 0:
+                            q.append(j)
+                            colors[j] = -1 *colors[node]
+                        
+        return True
+        
+    
 # @lc code=end
 
